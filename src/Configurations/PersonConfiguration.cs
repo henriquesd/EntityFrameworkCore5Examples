@@ -16,7 +16,9 @@ namespace EntityFrameworkCore5Examples.Configurations
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {
-            builder.ToTable("Clients");
+            builder.ToTable("Clients")
+                .Property(c => c.Email)
+                .IsRequired();
         }
     }
 
