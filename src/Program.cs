@@ -13,6 +13,8 @@ namespace EntityFrameworkCore5Examples
 
             QueryWithoutSplitQuery();
             QueryWithSplitQuery();
+
+            SelectUsers();
         }
 
         static void CreateDatabase()
@@ -20,6 +22,18 @@ namespace EntityFrameworkCore5Examples
             using var db = new ApplicationContext();
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
+        }
+
+        static void SelectUsers()
+        {
+            using var db = new ApplicationContext();
+
+            var users = db.Users.ToList();
+
+            foreach (var user in users)
+            {
+                Console.WriteLine($"User: {user.Name} - Username: {user.UserName}");
+            }
         }
 
         static void QueryWithoutSplitQuery()
